@@ -1,12 +1,16 @@
 package com.mrcaps;
 
 import java.util.Arrays;
+import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONTweaker {
+	private static final Log log = LogFactory.getLog(JSONTweaker.class);
 	protected JSONObject obj;
 	
 	public JSONTweaker(JSONObject obj) {
@@ -74,5 +78,48 @@ public class JSONTweaker {
 		}
 		
 		return cur;
+	}
+	
+	/**
+	 * 
+	 * @param props properties to use when overriding
+	 * @param prefix prefix for command-line args
+	 * @param obj the object to modify
+	 * @return
+	 * @throws JSONException 
+	 */
+	public static JSONObject overrideJSON(
+			Map<Object, Object> props, 
+			String prefix, 
+			JSONObject obj) {
+		
+		//TODO: modifies the underlying object now.
+		JSONObject oc = obj;
+		JSONTweaker tweak = new JSONTweaker(oc);
+		for (Map.Entry<Object, Object> en : props.entrySet()) {
+			String key = en.getKey().toString();
+			String val = en.getValue().toString();
+			if (key.startsWith(prefix)) {
+				key = key.substring(prefix.length());
+				try {
+					if (val.startsWith("\"")) {
+						tweak.mod(key, val.substring(1, val.length()-2));
+					} else {
+						//try a Number.
+						//XXX: currently only deals with Integers
+						try {
+							int ival = Integer.parseInt(val);
+							tweak.mod(key, ival);
+						} catch (NumberFormatException ex) {
+							tweak.modJSON(key, val);
+						}
+					}
+				} catch (JSONException ex) {
+					//skip keys we can't set.
+					log.info("Skipping override key " + key);
+				}
+			}
+		}
+		return oc;
 	}
 }

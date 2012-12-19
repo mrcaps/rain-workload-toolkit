@@ -1,14 +1,12 @@
 package com.mrcaps;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.io.InputStreamReader;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class JSONTweakerTest {
@@ -28,6 +26,6 @@ public class JSONTweakerTest {
 		tweak.mod("map.blue", "BLUE");
 		assertEquals("BLUE", obj.getJSONObject("map").get("blue"));
 		
-		System.out.println(obj.toString(2));
+		//System.out.println(obj.toString(2));
 	}
 }
