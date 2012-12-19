@@ -1,0 +1,12 @@
+{
+	"foo":"bar",
+	"arr":[
+		"one","two","three","four"
+	],
+	"map":{
+		"hello":"hola",
+		"blue":"azul",
+		"gray":"gris",
+		"cold":"frio"
+	}
+}
