@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.http.Header;
 //import org.apache.http.HttpHost;
 import org.apache.http.HttpMessage; 
@@ -82,6 +83,8 @@ import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+
+import sun.misc.BASE64Encoder;
 
 /**
  * The HttpTransport class is used to issue various HTTP requests.
@@ -619,6 +622,11 @@ public class HttpTransport
 		this._finalUrl = httpRequest.getURI().toString();
 		
 		long start = System.currentTimeMillis();
+		
+		// XXX: hardcoded username/password
+		String upencode = Base64.encodeBase64String("testuser:testpass".getBytes()).trim();
+		httpRequest.setHeader("Authorization", "Basic " + upencode);
+		
 		// Execute the HTTP request and get the response entity.
 		HttpResponse response = this._httpClient.execute( httpRequest );
 		long end = System.currentTimeMillis();

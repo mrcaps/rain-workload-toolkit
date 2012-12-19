@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
@@ -67,6 +68,13 @@ public class LoadBenchmarkTest {
 		System.setProperty("Rtiming.rampUp", "5");
 		System.setProperty("Rcloudstone-001.target.hostname", "\"1.1.1.1\"");
 		System.setProperty("Rcloudstone-001.loadProfile[0].users", "200");
+	}
+	
+	@Test
+	public void testUserPass() {
+		String ups = "Aladdin:open sesame";
+		String up = Base64.encodeBase64String(ups.getBytes()).trim();
+		assertEquals("QWxhZGRpbjpvcGVuIHNlc2FtZQ==", up);
 	}
 	
 	private void dumpJSON(String name, JSONObject obj) throws JSONException {
