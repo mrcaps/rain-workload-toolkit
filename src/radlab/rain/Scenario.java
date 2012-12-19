@@ -41,6 +41,8 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mrcaps.JSONTweaker;
+
 import radlab.rain.communication.RainPipe;
 import radlab.rain.util.ConfigUtil;
 
@@ -222,6 +224,9 @@ public class Scenario
 				String fileContents = ConfigUtil.readFileAsString( filename );
 				tracksConfig = new JSONObject( fileContents );
 			}
+			
+			// Override JSON config with properties
+			JSONTweaker.overrideJSON(System.getProperties(), "R", tracksConfig);
 			
 			if (debug) {
 				System.out.println("[SCENARIO] Effective track configuration:");

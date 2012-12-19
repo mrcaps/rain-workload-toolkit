@@ -13,6 +13,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.mrcaps.JSONTweaker;
+
 import radlab.rain.util.ConfigUtil;
 
 public class LoadBenchmarkTest {
@@ -27,6 +29,8 @@ public class LoadBenchmarkTest {
 
 	@Test
 	public void test() throws Exception {
+		setOverrides();
+		
 		StringBuffer configData = new StringBuffer();
 		
 		String filename = "config/rain.config.olio.json";
@@ -52,11 +56,18 @@ public class LoadBenchmarkTest {
 		}
 		
 		jsonConfig = new JSONObject( fileContents );
-	
+		
+		JSONTweaker.overrideJSON(System.getProperties(), "R", jsonConfig);
+		
 		dumpJSON("Config", jsonConfig);
 		Scenario scenario = new Scenario(jsonConfig, true);
 	}
 	
+	public void setOverrides() {
+		System.setProperty("Rtiming.rampUp", "5");
+		System.setProperty("Rcloudstone-001.target.hostname", "\"1.1.1.1\"");
+		System.setProperty("Rcloudstone-001.loadProfile[0].users", "200");
+	}
 	
 	private void dumpJSON(String name, JSONObject obj) throws JSONException {
 		System.out.println(name + ":");

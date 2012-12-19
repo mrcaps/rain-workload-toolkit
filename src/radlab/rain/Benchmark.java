@@ -43,6 +43,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.json.*;
 
+import com.mrcaps.JSONTweaker;
+
 import radlab.rain.communication.RainPipe;
 import radlab.rain.util.ConfigUtil;
 
@@ -338,6 +340,9 @@ public class Benchmark
 			System.out.println( "ERROR parsing configuration file " + filename + " as JSON. Reason: " + e.toString() );
 			System.exit( 1 );
 		}
+		
+		// Override JSON config with properties
+		JSONTweaker.overrideJSON(System.getProperties(), "R", jsonConfig);
 	
 		// Create a scenario from the json config
 		Scenario scenario = new Scenario( jsonConfig );
