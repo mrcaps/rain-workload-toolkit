@@ -117,7 +117,11 @@ public class Scenario
 	 */
 	public Scenario( JSONObject jsonConfig ) throws Exception
 	{
-		this.loadProfile( jsonConfig );
+		this.loadProfile(jsonConfig, false);
+	}
+	
+	public Scenario(JSONObject jsonConfig, boolean debug) throws Exception {
+		this.loadProfile(jsonConfig, true);
 	}
 	
 	/**
@@ -149,7 +153,7 @@ public class Scenario
 	 * 
 	 * @param jsonConfig    The JSON object containing load specifications.
 	 */
-	public void loadProfile( JSONObject jsonConfig ) throws Exception
+	public void loadProfile(JSONObject jsonConfig, boolean debug) throws Exception
 	{
 		JSONObject tracksConfig = null;
 		try
@@ -217,6 +221,11 @@ public class Scenario
 				String filename = jsonConfig.getString( CFG_PROFILES_KEY );
 				String fileContents = ConfigUtil.readFileAsString( filename );
 				tracksConfig = new JSONObject( fileContents );
+			}
+			
+			if (debug) {
+				System.out.println("[SCENARIO] Effective track configuration:");
+				System.out.println(tracksConfig.toString(2));
 			}
 			
 			if( jsonConfig.has( CFG_MAX_SHARED_THREADS ) )
