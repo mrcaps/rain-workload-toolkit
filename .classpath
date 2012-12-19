@@ -33,5 +33,7 @@
 	<classpathentry kind="lib" path="thirdparty/jets3t-0.8.1/libs/commons-logging/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="thirdparty/mongo-2.5.3/mongo-2.5.3.jar" sourcepath="/home/rean/work/rain.git/thirdparty/mongo-2.5.3/mongo-2.5.3.zip"/>
 	<classpathentry kind="lib" path="thirdparty/riak-java-client/target/riak-client-1.0.6-SNAPSHOT-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="thirdparty/hbase-0.92.1/hbase-0.92.1.jar"/>
+	<classpathentry kind="lib" path="thirdparty/hector-core-1.0-1/hector-core-1.0-1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
