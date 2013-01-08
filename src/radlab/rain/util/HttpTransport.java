@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.http.Header;
 //import org.apache.http.HttpHost;
 import org.apache.http.HttpMessage; 
@@ -624,7 +623,7 @@ public class HttpTransport
 		long start = System.currentTimeMillis();
 		
 		// XXX: hardcoded username/password
-		String upencode = Base64.encodeBase64String("testuser:testpass".getBytes()).trim();
+		String upencode = (new BASE64Encoder()).encode("testuser:testpass".getBytes()).trim();
 		httpRequest.setHeader("Authorization", "Basic " + upencode);
 		
 		// Execute the HTTP request and get the response entity.

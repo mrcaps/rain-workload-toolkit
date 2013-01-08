@@ -1,9 +1,8 @@
 package radlab.rain;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -14,9 +13,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mrcaps.JSONTweaker;
-
 import radlab.rain.util.ConfigUtil;
+import sun.misc.BASE64Encoder;
+
+import com.mrcaps.JSONTweaker;
 
 public class LoadBenchmarkTest {
 
@@ -73,8 +73,13 @@ public class LoadBenchmarkTest {
 	@Test
 	public void testUserPass() {
 		String ups = "Aladdin:open sesame";
+		String expected = "QWxhZGRpbjpvcGVuIHNlc2FtZQ==";
 		String up = Base64.encodeBase64String(ups.getBytes()).trim();
-		assertEquals("QWxhZGRpbjpvcGVuIHNlc2FtZQ==", up);
+		assertEquals(expected, up);
+		
+		BASE64Encoder encoder = new sun.misc.BASE64Encoder();
+		up = encoder.encode(ups.getBytes()).trim();
+		assertEquals(expected, up);
 	}
 	
 	private void dumpJSON(String name, JSONObject obj) throws JSONException {
