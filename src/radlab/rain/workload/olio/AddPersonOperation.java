@@ -98,10 +98,11 @@ public class AddPersonOperation extends OlioOperation
 		HttpPost httpPost = new HttpPost( this.getGenerator().addPersonResultURL );
 		MultipartEntity entity = new MultipartEntity();
 		this.populateEntity( entity );
-		entity.addPart( "user[username]", new StringBody( username ) );
-		entity.addPart( "user[password]", new StringBody( password ) );
-		entity.addPart( "user[password_confirmation]", new StringBody( password ) );
-		entity.addPart( "user[email]", new StringBody( username + "@" + this._random.makeCString( 3, 10 ) + ".com") );
+		entity.addPart( "add_user_name", new StringBody( username ) );
+		entity.addPart( "password", new StringBody( password ) );
+		entity.addPart( "passwordx", new StringBody( password ) );
+		entity.addPart( "email", new StringBody( username + "@" + this._random.makeCString( 3, 10 ) + ".com") );		
+		
 		httpPost.setEntity( entity );
 		
 		// Make the POST request and verify that it succeeds.
@@ -132,11 +133,11 @@ public class AddPersonOperation extends OlioOperation
 		
 		StringBody telephone = new StringBody( RandomUtil.randomPhone( this._random, buffer ).toString() );
 		
-		entity.addPart( "user[firstname]", firstName );
-		entity.addPart( "user[lastname]", lastName );
-		entity.addPart( "user[telephone]", telephone );
-		entity.addPart( "user[summary]", new StringBody( RandomUtil.randomText( this._random, 50, 200 ) ) );
-		entity.addPart( "user[timezone]", new StringBody( RandomUtil.randomTimeZone( this._random ) ) );
+		entity.addPart( "first_name", firstName );
+		entity.addPart( "last_name", lastName );
+		entity.addPart( "telephone", telephone );
+		entity.addPart( "summary", new StringBody( RandomUtil.randomText( this._random, 50, 200 ) ) );
+		entity.addPart( "timezone", new StringBody( RandomUtil.randomTimeZone( this._random ) ) );
 		
 		// Add image for person
 		entity.addPart( "user_image", new FileBody( this.getGenerator().personImg ) );

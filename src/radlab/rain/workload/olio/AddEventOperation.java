@@ -107,35 +107,27 @@ public class AddEventOperation extends OlioOperation
 		
 		this.setFailed( false );
 	}
-	
-	/**
-	 * Adds the details and files needed to create a new event in Olio.
-	 * 
-	 * @param entity        The request entity in which to add event details.
-	 * 
-	 * @throws UnsupportedEncodingException
-	 */
+
 	protected void populateEntity( MultipartEntity entity ) throws UnsupportedEncodingException
 	{
 		entity.addPart("commit", new StringBody( "Create" ) );
 		
-		entity.addPart("event[title]", new StringBody( RandomUtil.randomText( this._random, 15, 20 ) ) );
-		entity.addPart("event[summary]", new StringBody( RandomUtil.randomText( this._random, 50, 200 ) ) );
-		entity.addPart("event[description]", new StringBody( RandomUtil.randomText( this._random, 100, 495 ) ) );
-		entity.addPart("event[telephone]", new StringBody( RandomUtil.randomPhone( this._random, new StringBuilder( 256 ) ) ) );
-		entity.addPart("event[event_timestamp(1i)]", new StringBody( "2008" ) );
-		entity.addPart("event[event_timestamp(2i)]", new StringBody( "10" ) );
-		entity.addPart("event[event_timestamp(3i)]", new StringBody( "20" ) );
-		entity.addPart("event[event_timestamp(4i)]", new StringBody( "20" ) );
-		entity.addPart("event[event_timestamp(5i)]", new StringBody( "10" ) );
+		entity.addPart("title", new StringBody( RandomUtil.randomText( this._random, 15, 20 ) ) );
+		entity.addPart("summary", new StringBody( RandomUtil.randomText( this._random, 50, 200 ) ) );
+		entity.addPart("description", new StringBody( RandomUtil.randomText( this._random, 100, 495 ) ) );
+		entity.addPart("telephone", new StringBody( RandomUtil.randomPhone( this._random, new StringBuilder( 256 ) ) ) );
+		entity.addPart("year", new StringBody( "2008" ) );
+		entity.addPart("month", new StringBody( "10" ) );
+		entity.addPart("day", new StringBody( "20" ) );
+		entity.addPart("hour", new StringBody( "20" ) );
+		entity.addPart("minute", new StringBody( "10" ) );
 		
 		// Add uploaded files
-		entity.addPart( "event_image", new FileBody(this.getGenerator().eventImg ) );
+		entity.addPart( "upload_image", new FileBody(this.getGenerator().eventImg ) );
 		entity.addPart( "event_document", new FileBody( this.getGenerator().eventPdf ) );
 		
-		entity.addPart( "tag_list", new StringBody( "tag1" ) );
+		entity.addPart( "tags", new StringBody( "tag1" ) );
 		
 		this.addAddress( entity );
 	}
-	
 }

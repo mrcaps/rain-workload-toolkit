@@ -55,7 +55,7 @@ public class PersonDetailOperation extends OlioOperation
 		{
 			int userId = this._random.random( 1, ScaleFactors.loadedUsers );
 			
-			String personUrl = this.getGenerator().personDetailURL + userId;
+			String personUrl = this.getGenerator().personDetailURL + "?username=" + userId;
 			StringBuilder personResponse = this._http.fetchUrl( personUrl );
 			this.trace( personUrl );
 			if (personResponse.length() == 0)

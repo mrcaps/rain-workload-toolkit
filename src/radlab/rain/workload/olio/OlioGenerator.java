@@ -56,30 +56,33 @@ import radlab.rain.util.NegativeExponential;
  */
 public class OlioGenerator extends Generator
 {
-	/** Static URLs loaded as part of the layout. */
+	/** Static URLs loaded as part of the layout. */	
 	protected static final String[] LAYOUT_STATICS = {
-		"/javascripts/prototype.js",
-		"/javascripts/effects.js",
-		"/javascripts/dragdrop.js",
-		"/javascripts/controls.js",
-		"/javascripts/application.js",
-		"/stylesheets/scaffold.css",
-		"/stylesheets/site.css",
+		"/js/validateform.js",
+		"/js/starrating.js",
+		"/js/prototype.js",
+		"/js/httpobject.js",
+		"/js/effects.js",
+		"/js/dragdrop.js",
+		"/js/controls.js",
+		"/css/scaffold.css",
+		"/css/site.css",
+		"/css/reset.css",
 		"/images/bg_main.png",
-		"/images/bg_header.gif",
-		"/images/main_nav_link_bg.gif",
-		"/images/main_nav_link_bg.gif",
+		"/images/php_bg_header.gif",
+		"/images/php_main_nav_link_bg.gif",
+		"/images/php_main_nav_link_bg.gif",
 		"/images/RSS-icon-large.gif",
-		"/images/main_nav_link_bg.gif",
-		"/images/main_nav_link_bg.gif",
-		"/images/corner_top_right.png",
-		"/images/corner_top_left.png",
-		"/images/corner_bottom_right.png",
-		"/images/corner_bottom_left.png",
-		"/images/reflec_tile.png",
-		"/images/reflec_right.png",
-		"/images/reflec_left.png",
-		"/images/main_nav_hover_bg.gif"
+		"/images/php_main_nav_link_bg.gif",
+		"/images/php_main_nav_link_bg.gif",
+		"/images/php_corner_top_right.gif",
+		"/images/php_corner_top_left.gif",
+		"/images/php_corner_bottom_right.gif",
+		"/images/php_corner_bottom_left.gif",
+		"/images/php_reflec_tile.gif",
+		"/images/php_reflec_right.gif",
+		"/images/php_reflec_left.gif",
+		"/images/php_main_nav_hover_bg.gif"
 	};
 	
 	/*
@@ -365,18 +368,18 @@ public class OlioGenerator extends Generator
 	public void initializeUrlAnchors()
 	{
 		this.baseURL = "http://" + this._loadTrack.getTargetHostName() + ":" + this._loadTrack.getTargetHostPort();
-		this.personDetailURL    = this.baseURL + "/users/";
-		this.tagSearchURL       = this.baseURL + "/events/tag_search/";
+		this.personDetailURL    = this.baseURL + "/users.php";
+		this.tagSearchURL       = this.baseURL + "/taggedEvents.php";
 		this.tagCloudURL        = this.baseURL + "/tagCloud." + type;
-		this.addEventURL        = this.baseURL + "/events/new";
-		this.addEventResultURL  = this.baseURL + "/events/";
-		this.addPersonURL       = this.baseURL + "/users/new";
-		this.addPersonResultURL = this.baseURL + "/users";
+		this.addEventURL        = this.baseURL + "/addEvent.php";
+		this.addEventResultURL  = this.baseURL + "/addEventResult.php";
+		this.addPersonURL       = this.baseURL + "/addPerson.php";
+		this.addPersonResultURL = this.baseURL + "/addPersonResult.php";
 		this.homepageURL        = this.baseURL + "/";
-		this.loginURL           = this.baseURL + "/users/login";
-		this.logoutURL          = this.baseURL + "/users/logout";
-		this.addAttendeeURL     = this.baseURL + "/events/";
-		this.eventDetailURL     = this.baseURL + "/events/";
+		this.loginURL           = this.baseURL + "/login.php";
+		this.logoutURL          = this.baseURL + "/logout.php";
+		this.addAttendeeURL     = this.baseURL + "/addAttendee.php";
+		this.eventDetailURL     = this.baseURL + "/events.php";
 		this.fileServiceURL     = this.baseURL + "/fileService." + type + '?';
 		this.checkNameURL       = this.baseURL + "/users/check_name";
 	}

@@ -323,7 +323,7 @@ public abstract class OlioOperation extends Operation
 		this._logger.fine( "Logging on as " + username + " (ID/Password: " + password + ")" );
 		
 		// Make the POST request to log in.
-		String postBody = "users[username]=" + username + "&users[password]=" + password + "&submit=Login";
+		String postBody = "user_name=" + username + "&password=" + password + "&submit=Login";
 		StringBuilder response = this._http.fetchUrl( this.getGenerator().loginURL, postBody );
 		this.trace( this.getGenerator().loginURL );
 		
@@ -410,12 +410,12 @@ public abstract class OlioOperation extends Operation
 	 */
 	public void addAddress( MultipartEntity reqEntity ) throws UnsupportedEncodingException
 	{
-		reqEntity.addPart( "address[street1]", new StringBody( street1() ) );
-		reqEntity.addPart( "address[street2]", new StringBody( street2() ) );
-		reqEntity.addPart( "address[city]",    new StringBody( this._random.makeCString( 4, 14 ) ) );
-		reqEntity.addPart( "address[state]",   new StringBody( this._random.makeCString( 2, 2 ).toUpperCase() ) );
-		reqEntity.addPart( "address[zip]",     new StringBody( this._random.makeNString( 5, 5 ) ) );
-		reqEntity.addPart( "address[country]", new StringBody( country() ) );
+		reqEntity.addPart( "street1", new StringBody( street1() ) );
+		reqEntity.addPart( "street2", new StringBody( street2() ) );
+		reqEntity.addPart( "city",    new StringBody( this._random.makeCString( 4, 14 ) ) );
+		reqEntity.addPart( "state",   new StringBody( this._random.makeCString( 2, 2 ).toUpperCase() ) );
+		reqEntity.addPart( "zip",     new StringBody( this._random.makeNString( 5, 5 ) ) );
+		reqEntity.addPart( "country", new StringBody( country() ) );
 	}
 	
 	/**
