@@ -92,7 +92,7 @@ public class EventDetailOperation extends OlioOperation
 				// 10% of the time we can add ourselves, we will.
 				if ( this._random.random( 0, 9 ) == 0 )
 				{
-					String attendUrl = this.getGenerator().addAttendeeURL + selectedEvent + "/attend";
+					String attendUrl = this.getGenerator().addAttendeeURL + "?id=" + selectedEvent;
 					this._http.fetchUrl( attendUrl  );
 					this.trace( attendUrl );
 				}

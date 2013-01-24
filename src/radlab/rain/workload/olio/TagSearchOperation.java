@@ -55,7 +55,7 @@ public class TagSearchOperation extends OlioOperation
 		String tag = RandomUtil.randomTagName( this._random );
 		this._logger.finer( "Searching the tag: " + tag );
 		
-		String searchUrl = this.getGenerator().tagSearchURL + "?tag=" + tag + "&submit=Search+Tags";
+		String searchUrl = this.getGenerator().tagSearchURL + "?tag=" + tag + "&tagsearchsubmit=Search+Tags";
 		StringBuilder searchResponse = this._http.fetchUrl( searchUrl );
 		this.trace( searchUrl );
 		if( searchResponse.length() == 0 )
