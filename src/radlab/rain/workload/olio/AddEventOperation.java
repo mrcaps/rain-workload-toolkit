@@ -87,6 +87,7 @@ public class AddEventOperation extends OlioOperation
 			MultipartEntity entity = new MultipartEntity();
 			this.populateEntity( entity );
 			entity.addPart( "authenticity_token", new StringBody( token ) );
+			entity.addPart("addeventsubmit", new StringBody( "Create" ) );
 			httpPost.setEntity( entity );
 			
 			// Make the POST request.
