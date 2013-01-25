@@ -87,9 +87,9 @@ public class AddPersonOperation extends OlioOperation
 		String password = String.valueOf( id );
 		
 		// Check that the username is unique.
-		StringBuilder checkResponse = this._http.fetchUrl( this.getGenerator().checkNameURL, "name=" + username );
+		StringBuilder checkResponse = this._http.fetchUrl( this.getGenerator().checkNameURL, "user=" + username );
 		this.trace( this.getGenerator().checkNameURL );
-		if ( checkResponse.equals( "Name taken" ) )
+		if ( checkResponse.equals( "Name taken" ) || (checkResponse.indexOf("already in use") > -1) )
 		{
 			throw new Exception( "Generated username was not unique" );
 		}

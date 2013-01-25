@@ -137,7 +137,7 @@ public class OlioGenerator extends Generator
 	public File eventPdf; 
 	public File personImg; 
 	public File personThumb;
-	public String type = "html";
+	public String type = "php";
 	
 	/** The number of users created during the benchmark run. */
 	public AtomicLong _personsAdded = new AtomicLong(0L);
@@ -381,7 +381,7 @@ public class OlioGenerator extends Generator
 		this.addAttendeeURL     = this.baseURL + "/addAttendee.php";
 		this.eventDetailURL     = this.baseURL + "/events.php";
 		this.fileServiceURL     = this.baseURL + "/fileService." + type + '?';
-		this.checkNameURL       = this.baseURL + "/users/check_name";
+		this.checkNameURL       = this.baseURL + "/checkUser.php";
 	}
 	
 	/**
